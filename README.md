@@ -1,5 +1,15 @@
 # inspired-server
 
+* [What is it?](#what-is-it)
+* [Notes & Requirements](#notes--requirements)
+* [Basic usage](#basic-usage)
+* [Getting started](#getting-started)
+* [Documentation](#documentation)
+* [Philosophy](#philosophy)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [Support](#support)
+
 ## What is it?
 `inspired-server` is the first component of the _inspired JS_ toolset.
 You should check out the [roadmap](#roadmap) to get an idea of where we're going.
