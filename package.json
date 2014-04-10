@@ -1,0 +1,40 @@
+{
+  "name": "inspired-server",
+  "version": "0.0.2",
+  "description": "A RESTful entity server",
+  "main": "lib/app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "node-uuid": "~1.4.1",
+    "pg": "~2.11.1",
+    "q": "~1.0.1",
+    "browserify": "~3.38.1",
+    "coffee-script": "~1.7.1",
+    "through": "~2.3.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "for f in tests/*; do echo \"$f\"; casperjs test \"$f\"; done; exit 0",
+    "prestart": "coffee -c -o lib/ src/",
+    "prepublish": "coffee -c -o lib/ src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inspired-io/inspired-server.git"
+  },
+  "keywords": [
+    "rest",
+    "hateoas",
+    "entity",
+    "server",
+    "inspired"
+  ],
+  "author": "Jonathan Melnick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inspired-io/inspired-server/issues"
+  },
+  "homepage": "https://github.com/inspired-io/inspired-server"
+}
