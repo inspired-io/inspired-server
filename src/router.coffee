@@ -26,11 +26,12 @@ class Router
 		@id = @info[2]
 		@format = @info[3]
 
+	isIndex: ->
+		@url.pathname is '/'
+
 	isValid: ->
-		statics = [
+		@info? and @info[0] not in [
 			'/favicon.ico'
 		]
-
-		@info? and @info[0] not in statics
 
 module.exports = Router
