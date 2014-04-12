@@ -26,7 +26,7 @@ _We're still implementing some of the methods but we're pretty close!_
 Write your code once, use it everywhere. From validation logic to computed
 properties, you shouldn't have to repeat yourself.
 
-### Models are available anywhere you can run JS
+### Models are available anywhere you can run JS (Code-on-Demand)
 Just include your code on any platform that can run Javascript.
 We've tested running clients in Webkit and NodeJS.
 
