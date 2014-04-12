@@ -55,13 +55,6 @@ class Meta
 
 		return deferred.promise
 
-	loadFile: (path) ->
-		deferred = Q.defer()
-		fs.readFile path, 'ascii', (err, content) =>
-			return deferred.reject err if err
-			deferred.resolve content
-		return deferred.promise
-
 	handler: (request, response) =>
 		url = url.parse request.url
 
