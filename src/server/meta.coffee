@@ -44,7 +44,7 @@ class Meta
 
 		if @bundles[path]?
 			deferred.resolve @bundles[path]
-		else
+		else if @bundleOptions[path]?
 			args = @bundleOptions[path]
 			bundleString = ''
 			@getBrowserify(args.options).bundle(args)
@@ -52,6 +52,8 @@ class Meta
 				.on 'end', =>
 					@bundles[path] = bundleString
 					deferred.resolve bundleString
+		else
+			deferred.reject "Path does not exist"
 
 		return deferred.promise
 
