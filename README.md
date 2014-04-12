@@ -17,16 +17,15 @@ In the meantime, here are the existing features:
 
 ### Fully RESTful entity server (~50%)
 Create your entities, then use any RESTful capable tool to manage your data.
-`inspired-server` supports all the REST verbs, impements HATEOAS,
+`inspired-server` supports all the HTTP verbs, impements HATEOAS &
+[HAL](http://tools.ietf.org/html/draft-kelly-json-hal-06)
 and uses HTTP status codes semantically.
 
 _We're still implementing some of the methods but we're pretty close!_
 
-### Models are shared between clients and server
-Write your code once, use it everywhere. From validation logic to computed
-properties, you shouldn't have to repeat yourself.
-
-### Models are available anywhere you can run JS (Code-on-Demand)
+### Code-on-Demand: Use your JS models anywhere
+Models are shared between clients and server so write your code once and use it everywhere.
+From validation logic to computed properties, you shouldn't have to repeat yourself.
 Just include your code on any platform that can run Javascript.
 We've tested running clients in Webkit and NodeJS.
 
