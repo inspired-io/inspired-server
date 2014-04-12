@@ -35,6 +35,7 @@ class Meta
 		b.ignore 'coffee-script'
 		b.ignore 'browserify'
 		b.ignore 'through'
+		b.ignore './server'
 		b.add process.mainModule.filename
 		b.transform bTransform
 		return b

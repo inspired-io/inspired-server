@@ -3,7 +3,7 @@ global.App = App = {
 	Helpers: require './helpers'
 	Entity: require './entity'
 	Field: require './field'
-	Server: require './server'
+	Server: require('./server')
 	Router: require './router'
 	DB: require './db'
 	isRemote: process.browser? or process.mainModule.loaded
@@ -11,6 +11,7 @@ global.App = App = {
 
 if App.isRemote
 	App.DB.adapter new (require './db/rest')
+	App.Server = ->
 else
 	App.DB.adapter new (require './db/pg')
 
