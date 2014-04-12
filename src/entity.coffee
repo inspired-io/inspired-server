@@ -23,7 +23,10 @@ class _Base
 		@[key] = val for key, val of data
 
 	_tableName: ->
-		@constructor.name.toLowerCase()
+		unless @constructor._tableName?
+			@constructor._tableName = (name for name, entityClass of @constructor._db.registry() when entityClass is @constructor)
+
+		@constructor._tableName
 
 class Default extends _Base
 	uuid: new Field.Uuid()
