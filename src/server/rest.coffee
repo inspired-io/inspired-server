@@ -7,9 +7,12 @@ class Rest
 		# Router
 		router = new App.Router request
 
+		# Access logs
+		response.on 'finish', () ->
+			console.log request.connection.remoteAddress, response.statusCode, request.method, request.url
+
 		# 400 Error Handling
 		unless router.isValid()
-			console.warn '400', router.url
 			response.writeHead 400
 			response.end()
 

@@ -20,7 +20,6 @@ class Router
 		@url = url.parse @request.url, true
 		@info = /^\/([a-z0-9_]+)(?:(?:\/([^.]+))?(?:\.([a-z]+))?)?$/.exec @url.pathname
 
-		console.log @request.connection.remoteAddress, @request.method, @request.url
 		return unless @isValid()
 
 		@name = @info[1]
@@ -28,6 +27,10 @@ class Router
 		@format = @info[3]
 
 	isValid: ->
-		@info?
+		statics = [
+			'/favicon.ico'
+		]
+
+		@info? and @info[0] not in statics
 
 module.exports = Router
