@@ -44,7 +44,5 @@ class AdapterPostgreSQL
 				@query sql, values
 	deleteOne: (name, uuid) ->
 		@query "DELETE FROM #{name} WHERE \"uuid\" = $1", [uuid]
-			.then (result) ->
-				console.log result
 
 module.exports = AdapterPostgreSQL

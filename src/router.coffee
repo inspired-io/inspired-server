@@ -20,7 +20,7 @@ class Router
 		@url = url.parse @request.url, true
 		@info = /^\/([a-z0-9_]+)(?:(?:\/([^.]+))?(?:\.([a-z]+))?)?$/.exec @url.pathname
 
-		console.log "[ROUTER - #{request.method}]", @info
+		console.log @request.connection.remoteAddress, @request.method, @request.url
 		return unless @isValid()
 
 		@name = @info[1]

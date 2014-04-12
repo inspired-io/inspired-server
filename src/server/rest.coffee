@@ -21,7 +21,6 @@ class Rest
 
 		# Entity Class
 		entityClass = @db.registry router.name
-		console.log entityClass, 'EC', @db.constructor._registry
 
 		# Entity
 		if router.id
