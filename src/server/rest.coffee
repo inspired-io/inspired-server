@@ -69,8 +69,25 @@ class Rest
 					response.writeHead 501, "Not Implemented"
 					response.end()
 				when 'POST'
-					response.writeHead 501, "Not Implemented"
-					response.end()
+					request.readJSON()
+						.then (data) =>
+							instance = new relationClass data
+							instance.uuid = uuid.v4()
+							instance[relatedKey] = router.id
+							instance.save()
+								.then (result) =>
+									resource = new App.Hal.Resource instance, router
+									response.writeHead 303, 'See Other', {
+										Location: resource._links.self.href
+									}
+									response.end()
+								.catch (e) =>
+									throw e
+						.catch (e) =>
+							console.log '[ERROR]', e
+							response.writeHead 503, {'Content-Type': 'application/json'}
+							response.write JSON.stringify e
+							response.end()
 				when 'PATCH'
 					response.writeHead 501, "Not Implemented"
 					response.end()
@@ -135,9 +152,15 @@ class Rest
 				when 'DELETE'
 					instance = new entityClass
 					instance.load(router.id).then =>
-						instance.delete().then ->
-							response.writeHead 200
-							response.end()
+						instance.delete()
+							.then ->
+								response.writeHead 200
+								response.end()
+							.catch (e) =>
+								console.log '[ERROR]', e
+								response.writeHead 503, {'Content-Type': 'application/json'}
+								response.write JSON.stringify e
+								response.end()
 				when 'OPTIONS'
 					response.writeHead 200, {
 						Allow: 'HEAD, GET, PUT, PATCH, LINK, UNLINK, DELETE'
