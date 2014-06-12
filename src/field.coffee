@@ -3,10 +3,15 @@ class _Base
 	default: -> null
 	length: -> null
 	type: -> null
+	multiple: -> false
+	unique: -> false
+	isForeignKey: -> false
 	isValid: (value) ->
 		if @length()? and value? and value.length > @length()
 			return false
 		return true
+	constructor: (args) ->
+		@[key] = val for key, val of args
 
 class Boolean extends _Base
 	type: -> 'boolean'
@@ -43,8 +48,19 @@ class Timestamp extends _Base
 
 class Uuid extends _Base
 	type: -> 'uuid'
+	unique: -> true
 
 class Password extends String
+
+class _Relation extends Uuid
+	references: -> throw "You must set 'references' for this field"
+	isForeignKey: -> true
+
+class HasOne extends _Relation
+	multiple: -> false
+
+class HasMany extends _Relation
+	multiple: -> true
 
 
 module.exports = {
@@ -61,4 +77,6 @@ module.exports = {
 	Timestamp: Timestamp
 	Uuid: Uuid
 	Password: Password
+	HasOne: HasOne
+	HasMany: HasMany
 }

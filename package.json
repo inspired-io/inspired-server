@@ -1,6 +1,6 @@
 {
   "name": "inspired-server",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A RESTful entity server",
   "main": "lib/app.js",
   "directories": {
@@ -12,7 +12,8 @@
     "q": "~1.0.1",
     "browserify": "~3.38.1",
     "coffee-script": "~1.7.1",
-    "through": "~2.3.4"
+    "through": "~2.3.4",
+    "handlebars": "~2.0.0-alpha.2"
   },
   "devDependencies": {},
   "scripts": {

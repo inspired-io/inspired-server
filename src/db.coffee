@@ -12,17 +12,10 @@ class DB
 		return @constructor._registry if not name?
 		return @constructor._registry[name] if not entityClass?
 		@constructor._registry[name] = entityClass
-		@adapter().migration name, entityClass
 		return entityClass
-	collection: (name) ->
-		return new Collection @, name
-
-class Collection
-	array: []
-	constructor: (@db, @name) ->
-	toArray: -> @array
-	load: ->
-		@db.adapter().query("SELECT uuid FROM #{@name}").then (result) =>
-			@array = result.rows
+	migrate: ->
+		@adapter().migrate @constructor._registry
+	collection: (name, condition) ->
+		return new App.Collection name, condition
 
 module.exports = DB

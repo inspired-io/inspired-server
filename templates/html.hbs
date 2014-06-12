@@ -1,0 +1,11 @@
+<h1>{{_links.self.href}}</h1>
+<dl>
+{{#each this}}
+    <dt>{{@key}}</dt>
+    <dd>{{this}}</dd>
+{{/each}}
+{{#each this._links}}
+    <dt>{{@key}}</dt>
+    <dd><a href="{{this.href}}">{{this.href}}</a></dd>
+{{/each}}
+</dl>

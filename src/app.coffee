@@ -1,11 +1,14 @@
 
 global.App = App = {
-	Helpers: require './helpers'
+	Collection: require './collection'
+	DB: require './db'
 	Entity: require './entity'
 	Field: require './field'
-	Server: require('./server')
+	Hal: require './hal'
+	Helpers: require './helpers'
 	Router: require './router'
-	DB: require './db'
+	Server: require './server'
+
 	isRemote: process.browser? or process.mainModule.loaded
 }
 

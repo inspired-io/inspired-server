@@ -1,4 +1,5 @@
 Field = require './field'
+hal = require 'hal'
 Q = require 'q'
 
 class _Base
@@ -31,25 +32,32 @@ class _Base
 class Default extends _Base
 	uuid: new Field.Uuid()
 
+	fields: ->
+		@constructor._fields[@constructor.name]
+
 	load: (uuid) ->
 		@constructor._db.adapter().getOne(@_tableName(), uuid)
 			.then (result) =>
 				@._setProperties result
 
 	validate: ->
-		fields = @constructor._fields[@constructor.name]
-		errors = (column for column, field of fields when not field.isValid(@[column]))
-		return {
+		errors = (column for column, field of @fields() when not field.isValid(@[column]))
+		{
 			errors: errors
 			isValid: !errors.length
 		}
+
 	save: ->
 		deferred = Q.defer()
 
 		validation = @validate()
 		if validation.isValid is true
 			@constructor._db.adapter().saveOne(@_tableName(), @uuid, @)
-				.then (result) -> deferred.resolve result
+				.then (result) =>
+					@uuid = result.uuid if result.uuid
+					deferred.resolve result
+				.catch (e) =>
+					deferred.reject e
 		else
 			deferred.reject validation
 

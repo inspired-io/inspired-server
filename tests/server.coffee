@@ -7,10 +7,10 @@ casper.test.begin 'Server tests', 5, (test) ->
 	}
 
 	###
-		POST /todo
+		POST /todos
 	###
 	casper.then ->
-		@open 'http://localhost:8765/todo', {
+		@open 'http://localhost:8765/todos.json', {
 			method: 'POST'
 			data: JSON.stringify {
 				'description': data.description
@@ -21,10 +21,10 @@ casper.test.begin 'Server tests', 5, (test) ->
 			test.assertEquals data.entity.description, data.description, "Create Entity"
 
 	###
-		GET /todo/[UUID]
+		GET /todos/[UUID]
 	###
 	casper.then ->
-		@open 'http://localhost:8765/todo/' + data.entity.uuid, {
+		@open "http://localhost:8765/todos/#{data.entity.uuid}.json", {
 			method: 'GET'
 		}
 		@then ->
@@ -32,32 +32,32 @@ casper.test.begin 'Server tests', 5, (test) ->
 			test.assertEquals entity, data.entity, "Fetch Entity"
 
 	###
-		GET /todo
+		GET /todos
 	###
 	casper.then ->
-		@open 'http://localhost:8765/todo', {
+		@open 'http://localhost:8765/todos.json', {
 			method: 'GET'
 		}
 		@then ->
-			entities = JSON.parse @getPageContent()
-			matches = (entity for entity in entities when entity.uuid is data.entity.uuid)
+			list = JSON.parse @getPageContent()
+			matches = (key for key, values of list._links when key is data.entity.uuid)
 			test.assertEquals matches.length, 1, "Check Entity appears in List"
 
 	###
-		DELETE /todo/[UUID]
+		DELETE /todos/[UUID]
 	###
 	casper.then ->
-		@open 'http://localhost:8765/todo/' + data.entity.uuid, {
+		@open "http://localhost:8765/todos/#{data.entity.uuid}.json", {
 			method: 'DELETE'
 		}
 		@then ->
 			test.assert true, "Delete Entity"
 
 	###
-		GET /todo
+		GET /todos
 	###
 	casper.then ->
-		@open 'http://localhost:8765/todo', {
+		@open 'http://localhost:8765/todos.json', {
 			method: 'GET'
 		}
 		@then ->

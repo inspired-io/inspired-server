@@ -5,20 +5,21 @@ Migration = require '../migration'
 class AdapterPostgreSQL
 	constructor: ->
 		@db = new App.DB
-	migration: (name, entityClass) ->
-		new Migration name, entityClass
+	migrate: (classes) ->
+		new Migration classes
 	query: (query, params) ->
+		console.log '[QUERY]', query, params
 		deferred = Q.defer()
 		pg.connect @db.dsn(), (err, client, done) ->
 			if err
 				done()
-				deferred.reject new Error err
+				deferred.reject err
 				return console.error 'error fetching client from pool', err
 			client.query query, params, (err, result) ->
 				done()
 				if err
-					deferred.reject new Error err
-					return console.error 'error running query', query, err
+					deferred.reject err
+					# return console.error 'error running query', query, err
 				else
 					deferred.resolve result
 		return deferred.promise
@@ -26,14 +27,18 @@ class AdapterPostgreSQL
 		@query "SELECT * FROM #{name} WHERE \"uuid\" = $1", [uuid]
 			.then (result) ->
 				result.rows[0]
-	getAll: (name) ->
-		@query "SELECT * FROM #{name}"
+	getAll: (name, condition) ->
+		sql = "SELECT * FROM #{name}"
+		sql += " WHERE #{condition}" if condition
+		@query sql
+			.then (result) ->
+				result.rows
 	saveOne: (name, uuid, entity) ->
 		@query "SELECT \"uuid\" FROM #{name} WHERE \"uuid\" = $1", [uuid]
 			.then (result) =>
-				fields = entity.constructor._fields[entity.constructor.name]
-				columns = (column for column of fields)
-				values = (entity[column] for column of fields)
+				fields = entity.fields()
+				columns = (column for column, field of fields when not field.multiple())
+				values = (entity[column] for column in columns)
 				params = ('$' + ++i for val, i in values)
 
 				if result.rows.length

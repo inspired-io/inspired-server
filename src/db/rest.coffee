@@ -3,7 +3,7 @@ Q = require 'q'
 
 class AdapterRestAPI
 	constructor: (@options = {}) ->
-	migration: (name, entityClass) ->
+	migrate: (classes) ->
 	query: (method, path, data) ->
 		deferred = Q.defer()
 		options = {
@@ -26,15 +26,17 @@ class AdapterRestAPI
 		request.end()
 		return deferred.promise
 	getOne: (name, uuid) ->
-		@query 'GET', "/#{name}/#{uuid}"
-	getAll: (name) ->
-		@query 'GET', "/#{name}"
+		@query 'GET', "/#{name}/#{uuid}.json"
+	getAll: (name, condition) ->
+		@query 'GET', "/#{name}.json"
+			.then (result) ->
+				(value for key, value of result._links)
 	saveOne: (name, uuid, entity) ->
 		if uuid?
-			@query 'PUT', "/#{name}/#{uuid}", JSON.stringify entity
+			@query 'PUT', "/#{name}/#{uuid}.json", JSON.stringify entity
 		else
-			@query 'POST', "/#{name}", JSON.stringify entity
+			@query 'POST', "/#{name}.json", JSON.stringify entity
 	deleteOne: (name, uuid) ->
-		@query 'DELETE', "/#{name}/#{uuid}"
+		@query 'DELETE', "/#{name}/#{uuid}.json"
 
 module.exports = AdapterRestAPI
