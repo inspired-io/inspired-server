@@ -13,7 +13,8 @@
     "browserify": "~3.38.1",
     "coffee-script": "~1.7.1",
     "through": "~2.3.4",
-    "handlebars": "~2.0.0-alpha.2"
+    "handlebars": "~2.0.0-alpha.2",
+    "commander": "~2.2.0"
   },
   "devDependencies": {},
   "scripts": {

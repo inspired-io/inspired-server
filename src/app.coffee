@@ -1,6 +1,7 @@
 
 global.App = App = {
 	Collection: require './collection'
+	Config: require './config'
 	DB: require './db'
 	Entity: require './entity'
 	Field: require './field'
