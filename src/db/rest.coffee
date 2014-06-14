@@ -38,5 +38,11 @@ class AdapterRestAPI
 			@query 'POST', "/#{name}.json", JSON.stringify entity
 	deleteOne: (name, uuid) ->
 		@query 'DELETE', "/#{name}/#{uuid}.json"
+	deleteAll: (name, condition) ->
+		@query 'DELETE', "/#{name}.json"
+	headAll: (name, condition) ->
+		@query 'HEAD', "/#{name}.json"
+	countAll: (name, condition) ->
+		@headAll name, condition
 
 module.exports = AdapterRestAPI

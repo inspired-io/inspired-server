@@ -33,6 +33,12 @@ class AdapterPostgreSQL
 		@query sql
 			.then (result) ->
 				result.rows
+	countAll: (name, condition) ->
+		sql = "SELECT COUNT(\"uuid\") FROM #{name}"
+		sql += " WHERE #{condition}" if condition
+		@query sql
+			.then (result) ->
+				Number(result.rows[0].count)
 	saveOne: (name, uuid, entity) ->
 		@query "SELECT \"uuid\" FROM #{name} WHERE \"uuid\" = $1", [uuid]
 			.then (result) =>
@@ -49,5 +55,9 @@ class AdapterPostgreSQL
 				@query sql, values
 	deleteOne: (name, uuid) ->
 		@query "DELETE FROM #{name} WHERE \"uuid\" = $1", [uuid]
+	deleteAll: (name, condition) ->
+		sql = "DELETE FROM #{name}"
+		sql += " WHERE #{condition}" if condition
+		@query sql
 
 module.exports = AdapterPostgreSQL

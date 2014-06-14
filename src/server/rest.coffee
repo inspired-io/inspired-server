@@ -50,11 +50,22 @@ class Rest
 
 			switch request.method
 				when 'HEAD'
-					response.writeHead 501, "Not Implemented"
-					response.end()
+					collection.count().then =>
+						response.setHeader 'Content-Range', "items */#{collection.toLength()}"
+						switch router.format
+							when 'json'
+								response.writeHead 200, {'Content-Type': 'application/json'}
+								response.end()
+							when 'xml'
+								response.writeHead 200, {'Content-Type': 'application/xml'}
+								response.end()
+							else
+								response.writeHead 200, {'Content-Type': 'text/html'}
+								response.end()
 				when 'GET'
 					collection.load().then =>
 						resource = new App.Hal.Resource collection, router
+						response.setHeader 'Content-Range', "items */#{collection.toArray().length}"
 						switch router.format
 							when 'json'
 								response.writeHead 200, {'Content-Type': 'application/json'}
@@ -98,11 +109,19 @@ class Rest
 					response.writeHead 501, "Not Implemented"
 					response.end()
 				when 'DELETE'
-					response.writeHead 501, "Not Implemented"
-					response.end()
+					collection.delete()
+						.then =>
+							response.writeHead 200
+							response.end()
+						.catch (e) =>
+							console.log '[ERROR]', e
+							response.writeHead 503, {'Content-Type': 'application/json'}
+							response.write JSON.stringify e
+							response.end()
 				when 'OPTIONS'
 					response.writeHead 200, {
 						Allow: 'HEAD, GET, PUT, POST, DELETE'
+						'Accept-Ranges': 'items'
 					}
 					response.end()
 				else
@@ -229,6 +248,7 @@ class Rest
 				when 'OPTIONS'
 					response.writeHead 200, {
 						Allow: 'HEAD, GET, PUT, POST, DELETE'
+						'Accept-Ranges': 'items'
 					}
 					response.end()
 				else
