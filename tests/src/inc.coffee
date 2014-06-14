@@ -21,6 +21,12 @@ casper.inspired = {
 			data: JSON.stringify data
 		}
 
+	put: (path, data) ->
+		casper.thenOpen casper.inspired.url(path), {
+			method: 'PUT'
+			data: JSON.stringify data
+		}
+
 	delete: (path) ->
 		casper.thenOpen casper.inspired.url(path), {
 			method: 'DELETE'
