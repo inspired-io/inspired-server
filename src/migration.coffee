@@ -125,7 +125,7 @@ class Migration
 			else
 				@fieldUniqueHelper table, column if field.unique() # OneToOne
 				constraintName = "#{table}_#{column}_fk"
-				@queries.constraints.push "ALTER TABLE \"#{table}\" ADD CONSTRAINT #{constraintName} FOREIGN KEY (#{column}) REFERENCES \"#{field.references()}\" (\"uuid\")"
+				@queries.constraints.push "ALTER TABLE \"#{table}\" ADD CONSTRAINT #{constraintName} FOREIGN KEY (\"#{column}\") REFERENCES \"#{field.references()}\" (\"uuid\")"
 
 	fieldHelper: (table, column, field, row) ->
 		sql = ''
@@ -152,6 +152,6 @@ class Migration
 
 	fieldUniqueHelper: (table, column) ->
 		constraintName = "#{table}_#{column}_unique"
-		@queries.uniques.push "ALTER TABLE \"#{table}\" ADD CONSTRAINT #{constraintName} UNIQUE (#{column})"
+		@queries.uniques.push "ALTER TABLE \"#{table}\" ADD CONSTRAINT #{constraintName} UNIQUE (\"#{column}\")"
 
 module.exports = Migration

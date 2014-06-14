@@ -44,13 +44,14 @@ class AdapterPostgreSQL
 			.then (result) =>
 				fields = entity.fields()
 				columns = (column for column, field of fields when not field.multiple())
+				columnsSQL = ("\"#{column}\"" for column in columns)
 				values = (entity[column] for column in columns)
 				params = ('$' + ++i for val, i in values)
 
 				if result.rows.length
-					sql = "UPDATE #{name} SET (#{columns}) = (#{params}) WHERE \"uuid\" = '#{uuid}'"
+					sql = "UPDATE #{name} SET (#{columnsSQL}) = (#{params}) WHERE \"uuid\" = '#{uuid}'"
 				else
-					sql = "INSERT INTO #{name} (#{columns}) VALUES (#{params})"
+					sql = "INSERT INTO #{name} (#{columnsSQL}) VALUES (#{params})"
 
 				@query sql, values
 	deleteOne: (name, uuid) ->
