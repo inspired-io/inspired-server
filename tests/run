@@ -1,0 +1,66 @@
+#!/bin/sh
+
+#
+# VARIABLES
+#
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+#
+# ARGUMENTS
+#
+DSN=$1
+REST_PORT=$2
+META_PORT=$3
+
+#
+# REQUIREMENTS
+#
+if [ $# != 3 ]; then
+    echo "Usage:"
+    echo "  ./run 'postgres://[DB_USER]:[DB_PASS]@[DB_HOST]/[DB_NAME]' [REST_PORT] [META_PORT]"
+    exit 1
+fi
+
+#
+# CONSOLE
+#
+echo ""
+echo "#########################"
+echo "Starting inspired-server"
+
+#
+# START inspired-server
+#
+sleep 1
+coffee $DIR/app/app.coffee --dsn "$1" --rest-port "$2" --meta-port "$3" >/dev/null &
+PID=$!
+
+#
+# CONSOLE
+#
+echo "PID: $PID"
+echo "#########################"
+echo ""
+
+#
+# RUN TESTS
+#
+casperjs test $DIR/src/tests/ \
+    --pre=$DIR/src/pre.coffee \
+    --includes=$DIR/src/inc.coffee \
+    --post=$DIR/src/post.coffee \
+    --port="$2"
+
+#
+# STOP inspired-server
+#
+kill $PID
+
+#
+# CONSOLE
+#
+echo ""
+echo "#########################"
+echo "Stopped inspired-server"
+echo "#########################"
+echo ""

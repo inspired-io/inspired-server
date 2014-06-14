@@ -214,9 +214,38 @@ Once that's done, we'll be tackling separate modules:
 Pull requests will be considered here: https://github.com/inspired-io/inspired-server/pulls.
 If you want to write substantial functionality, please discuss architecture in a ticket first.
 
-The project uses CoffeeScript and tabs only.
+### Coding Standards
 
+The project uses CoffeeScript and tabs only.
 More coming soon.
+
+### Running tests
+
+Once you've [installed CasperJS](http://casperjs.readthedocs.org/en/latest/installation.html)
+you can run the test suite from the server module's root folder, like this:
+
+`$ ./tests/run [DSN] [REST_PORT] [META_PORT]`
+
+<dl>
+    <dt>DSN</dt>
+    <dd>
+        The connection details for the DB, eg: "postgres://username:password@hostname/database"
+        Create an empty DB for testing.
+        The tests should always cleanup after themselves.
+    </dd>
+    <dt>REST_PORT</dt>
+    <dd>The port to run the REST server on during the tests</dd>
+    <dt>META_PORT</dt>
+    <dd>The port to run the META server on during the tests</dd>
+</dl>
+
+Here's an example:
+
+`$ ./tests/run 'postgres://root@localhost/inspired_server_tests' 18765 19876`
+
+### Changes to README or other markdown files
+
+Make sure you preview your changes. We recommend using [markable.in](http://markable.in/).
 
 ## Support
 
