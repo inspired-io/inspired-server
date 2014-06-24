@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/inspired-io/inspired-server.svg?branch=master)](https://travis-ci.org/inspired-io/inspired-server)
 [![Documentation shield](http://img.shields.io/badge/documentation-v0.7-blue.svg)](http://inspired-server.readthedocs.org)
 
 # inspired-server
