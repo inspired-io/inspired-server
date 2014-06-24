@@ -1,3 +1,5 @@
+[![Documentation shield](http://img.shields.io/badge/documentation-v0.7-blue.svg)](http://inspired-server.readthedocs.org)
+
 # inspired-server
 
 `inspired-server` is the first component of the _inspired JS_ toolset.
