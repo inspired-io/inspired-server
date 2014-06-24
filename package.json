@@ -18,7 +18,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "for f in tests/*; do echo \"$f\"; casperjs test \"$f\"; done; exit 0",
+    "test": "./tests/run 'postgres://jonathan@localhost/inspired_server_tests' 18765 19876",
     "prestart": "coffee -c -o lib/ src/",
     "prepublish": "coffee -c -o lib/ src/"
   },

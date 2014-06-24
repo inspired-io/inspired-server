@@ -28,6 +28,22 @@ if [ $# -lt 3 ]; then
 fi
 
 #
+# FUNCTIONS
+#
+function startServer {
+    if [ "$DEBUG" == "debug" ]; then
+        $CMD &
+    else
+        $CMD >/dev/null &
+    fi
+    PID=$!
+}
+function stopServer {
+    kill $PID
+}
+
+
+#
 # CONSOLE
 #
 echo ""
@@ -35,15 +51,17 @@ echo "#########################"
 echo "Starting inspired-server"
 
 #
+# WARMUP inspired-server
+#
+startServer
+sleep 10
+stopServer
+sleep 1
+
+#
 # START inspired-server
 #
-sleep 1
-if [ "$DEBUG" == "debug" ]; then
-    $CMD &
-else
-    $CMD >/dev/null &
-fi
-PID=$!
+startServer
 
 #
 # CONSOLE
@@ -64,7 +82,7 @@ casperjs test $DIR/src/tests/ \
 #
 # STOP inspired-server
 #
-kill $PID
+stopServer
 
 #
 # CONSOLE
