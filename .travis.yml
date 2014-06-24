@@ -4,5 +4,5 @@ node_js:
 addons:
   postgresql: "9.3"
 before_script:
-  - psql -c 'create database inspired_server_test;' -U postgres
+  - psql -c 'create database inspired_server_tests;' -U postgres
   - npm install -g casperjs
