@@ -18,7 +18,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "./tests/run 'postgres://jonathan@localhost/inspired_server_tests' 18765 19876",
+    "test": "bash tests/run 'postgres://jonathan@localhost/inspired_server_tests' 18765 19876",
     "prestart": "coffee -c -o lib/ src/",
     "prepublish": "coffee -c -o lib/ src/"
   },
