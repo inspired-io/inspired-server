@@ -1,0 +1,226 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>About &mdash; inspired-server 0.0.7 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="#"/>
+    <link rel="top" title="inspired-server 0.0.7 documentation" href="index.html"/>
+        <link rel="next" title="Installation" href="installation.html"/>
+        <link rel="prev" title="inspired-server 0.0.7" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> inspired-server</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">About</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-it">What is it?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notes-requirements">Notes &amp; Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#inspired-server">inspired-server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#bootstrapping">Bootstrapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#models">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#run-the-app">Run the app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#how-to-use-it">How to use it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#examples-code-samples">Examples &amp; Code samples</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">inspired-server</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>About</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/about.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="about">
+<h1>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-it">
+<h2>What is it?<a class="headerlink" href="#what-is-it" title="Permalink to this headline">¶</a></h2>
+<p>inspired-server is the first component of the inspired JS toolset.
+You should check out the roadmap to get an idea of where we&#8217;re going.</p>
+<div class="section" id="fully-restful-entity-server-50">
+<h3>Fully RESTful entity server (~50%)<a class="headerlink" href="#fully-restful-entity-server-50" title="Permalink to this headline">¶</a></h3>
+<p>Create your entities, then use any RESTful capable tool to manage your data.
+inspired-server supports all the HTTP verbs, implements HATEOAS &amp; HAL and uses HTTP status codes semantically.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We&#8217;re still implementing some of the methods but we&#8217;re close to finishing!</p>
+</div>
+</div>
+<div class="section" id="code-on-demand-use-your-js-models-anywhere">
+<h3>Code-on-Demand: Use your JS models anywhere<a class="headerlink" href="#code-on-demand-use-your-js-models-anywhere" title="Permalink to this headline">¶</a></h3>
+<p>Models are shared between clients and server so write your code once and use it everywhere.
+From validation logic to computed properties, you shouldn&#8217;t have to repeat yourself.
+Just include your code on any platform that can run Javascript.
+We&#8217;ve tested running clients in Webkit and NodeJS.</p>
+</div>
+<div class="section" id="db-schema-generated-automatically-from-your-models">
+<h3>DB Schema generated automatically from your models<a class="headerlink" href="#db-schema-generated-automatically-from-your-models" title="Permalink to this headline">¶</a></h3>
+<p>Everything is derived from your models.
+Add or change fields, and the underlying database gets updated when you run your app!</p>
+</div>
+</div>
+<div class="section" id="notes-requirements">
+<h2>Notes &amp; Requirements<a class="headerlink" href="#notes-requirements" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="coffeescript-vs-javascript">
+<h3>CoffeeScript vs JavaScript<a class="headerlink" href="#coffeescript-vs-javascript" title="Permalink to this headline">¶</a></h3>
+<p>We recommend using CoffeeScript, and that&#8217;s what we use in the examples.
+Though plain Javascript works too, we haven&#8217;t documented that yet, but we accept pull requests, so you can!
+Read more about why in the design decisions section.</p>
+</div>
+<div class="section" id="postgresql">
+<h3>PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h3>
+<p>I&#8217;m sure this will be everyone&#8217;s first complaint.
+Yes, we will add MySQL and MongoDB support soon but none of the DBAL for NodeJS were good enough for us,
+so we&#8217;re using what we think is the most versatile and production-ready DB.
+If you don&#8217;t agree, write a good DBAL for inspired-server or don&#8217;t use this software.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="inspired-server 0.0.7"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Melnick.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.7',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

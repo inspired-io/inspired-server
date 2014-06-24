@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting started &mdash; inspired-server 0.0.7 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+    <link rel="top" title="inspired-server 0.0.7 documentation" href="index.html"/>
+        <link rel="prev" title="Installation" href="installation.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> inspired-server</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="about.html#what-is-it">What is it?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about.html#notes-requirements">Notes &amp; Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#inspired-server">inspired-server</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bootstrapping">Bootstrapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#models">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-app">Run the app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-use-it">How to use it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples-code-samples">Examples &amp; Code samples</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">inspired-server</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Getting started</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/getting_started.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Getting started with inspired-server is really easy.
+Make sure you&#8217;ve checked out the installation guide first.</p>
+<div class="section" id="bootstrapping">
+<h2>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Permalink to this headline">¶</a></h2>
+<p>Start by creating your bootstrap file.
+We decided to name ours <cite>main.coffee</cite> but you can name it whatever you like.</p>
+<div class="section" id="step-by-step">
+<h3>Step by step<a class="headerlink" href="#step-by-step" title="Permalink to this headline">¶</a></h3>
+<p>Step 1: Require the inspired-server app.</p>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">App = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;inspired-server&#39;</span><span class="p">).</span><span class="nx">App</span>
+</pre></div>
+</div>
+<p>Step 2: Setup your database connection.</p>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">db = </span><span class="k">new</span> <span class="nx">App</span><span class="p">.</span><span class="nx">DB</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">dsn</span> <span class="s">&#39;postgres://USERNAME:PASSWORD@HOST/DATABASE&#39;</span>
+</pre></div>
+</div>
+<p>Step 3: Register your models</p>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">App.Entity.NameOfMyFirstModel = </span><span class="nx">require</span> <span class="s">&#39;./path/to/my-first-model.coffee&#39;</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">registry</span> <span class="s">&#39;table_name_and_url_key&#39;</span><span class="p">,</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Entity</span><span class="p">.</span><span class="nx">NameOfMyFirstModel</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure you read the notes about <a class="reference internal" href="#models">Models</a>.</p>
+</div>
+<p>Step 4: Start the server</p>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="k">new</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Server</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="putting-it-all-together">
+<h3>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">App = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;inspired-server&#39;</span><span class="p">).</span><span class="nx">App</span>
+
+<span class="nv">db = </span><span class="k">new</span> <span class="nx">App</span><span class="p">.</span><span class="nx">DB</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">dsn</span> <span class="s">&#39;postgres://USERNAME:PASSWORD@HOST/DATABASE&#39;</span>
+
+<span class="nv">App.Entity.MyModelOne = </span><span class="nx">require</span> <span class="s">&#39;./lib/mymodel1.coffee&#39;</span>
+<span class="nv">App.Entity.MyModelTwo = </span><span class="nx">require</span> <span class="s">&#39;./lib/mymodel2.coffee&#39;</span>
+<span class="nv">App.Entity.MyModelThree = </span><span class="nx">require</span> <span class="s">&#39;./lib/mymodel3.coffee&#39;</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">registry</span> <span class="s">&#39;my_model_one&#39;</span><span class="p">,</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Entity</span><span class="p">.</span><span class="nx">MyModelOne</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">registry</span> <span class="s">&#39;my_model_two&#39;</span><span class="p">,</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Entity</span><span class="p">.</span><span class="nx">MyModelTwo</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">registry</span> <span class="s">&#39;my_model_three&#39;</span><span class="p">,</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Entity</span><span class="p">.</span><span class="nx">MyModelThree</span>
+
+<span class="k">new</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Server</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure you read the notes about <a class="reference internal" href="#models">Models</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="models">
+<h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h2>
+<p>Now, it&#8217;s time to write your models. For example, in <cite>./lib/mymodel1.coffee</cite>:</p>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="k">class</span> <span class="nx">MyModelOne</span> <span class="k">extends</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Entity</span><span class="p">.</span><span class="nx">Default</span>
+    <span class="nv">my_field1: </span><span class="k">new</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Field</span><span class="p">.</span><span class="nb">String</span>
+    <span class="nv">my_field2: </span><span class="k">new</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Field</span><span class="p">.</span><span class="nx">Float</span>
+    <span class="nv">sayHello: </span><span class="nf">-&gt;</span>
+        <span class="s">&quot;Hello World&quot;</span>
+
+<span class="nv">module.exports = </span><span class="nx">MyModelOne</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can put your models wherever you want. We put ours in a folder called <cite>lib/</cite>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For now, you MUST declare your models using the <cite>App.Entity.xxxx</cite> namespace. *</p>
+<p class="last">In future releases you&#8217;ll be able to use whatever namespace you like,
+which will help prevent conflicts between your own models and community models.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The server currently uses the table name as the url key.</p>
+<p class="last">In future releases it will be possible to specify both independently.</p>
+</div>
+</div>
+<div class="section" id="run-the-app">
+<h2>Run the app<a class="headerlink" href="#run-the-app" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>coffee main.coffee
+</pre></div>
+</div>
+<p>You can now reach your <cite>inspired-server</cite> on <a class="reference external" href="http://localhost:8765/">http://localhost:8765/</a>.</p>
+<p>JavaScript bundles are ready to include in the browser and in node clients here:
+* <a class="reference external" href="http://localhost:9876/bundle.js">http://localhost:9876/bundle.js</a>
+* <a class="reference external" href="http://localhost:9876/bundle.min.js">http://localhost:9876/bundle.min.js</a>
+* <a class="reference external" href="http://localhost:9876/bundle.dev.js">http://localhost:9876/bundle.dev.js</a>
+* <a class="reference external" href="http://localhost:9876/bundle.node.js">http://localhost:9876/bundle.node.js</a></p>
+</div>
+<div class="section" id="how-to-use-it">
+<h2>How to use it<a class="headerlink" href="#how-to-use-it" title="Permalink to this headline">¶</a></h2>
+<p>You can browse all your data by pointing your browser to <a class="reference external" href="http://localhost:8765/">http://localhost:8765/</a>
+but there are many other ways to consume your data using the same syntax and API!</p>
+<div class="section" id="browser-app">
+<h3>Browser App<a class="headerlink" href="#browser-app" title="Permalink to this headline">¶</a></h3>
+<p>Write your app directly in the browser.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://localhost:9876/bundle.dev.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Entity</span><span class="p">.</span><span class="nx">MyModelOne</span><span class="p">();</span>
+
+    <span class="nx">a</span><span class="p">.</span><span class="nx">my_field1</span> <span class="o">=</span> <span class="s2">&quot;A description&quot;</span><span class="p">;</span>
+    <span class="nx">a</span><span class="p">.</span><span class="nx">my_field2</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+
+    <span class="nx">a</span><span class="p">.</span><span class="nx">save</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Entity</span><span class="p">.</span><span class="nx">MyModelOne</span><span class="p">();</span>
+
+    <span class="nx">b</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">&#39;a-uuid-that-exists-in-the-db&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="nodejs-app">
+<h3>NodeJS App<a class="headerlink" href="#nodejs-app" title="Permalink to this headline">¶</a></h3>
+<p>Include the node bundle in your Node app and you&#8217;re all set!</p>
+<p>The following example is written in CoffeeScript but you can use Javascript if you like.</p>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">http = </span><span class="nx">require</span> <span class="s">&#39;http&#39;</span>
+
+<span class="nx">http</span><span class="p">.</span><span class="nx">get</span> <span class="p">{</span><span class="nv">host: </span><span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="nv">port: </span><span class="mi">9876</span><span class="p">,</span> <span class="nv">path: </span><span class="s">&#39;/bundle.node.js&#39;</span><span class="p">},</span> <span class="nf">(res) -&gt;</span>
+    <span class="nv">data = </span><span class="s">&#39;&#39;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">on</span> <span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="nf">(chunk) -&gt;</span> <span class="nx">data</span> <span class="o">+=</span> <span class="nx">chunk</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">on</span> <span class="s">&#39;end&#39;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+        <span class="nb">eval</span> <span class="nx">data</span>
+        <span class="nx">example</span><span class="p">()</span>
+
+<span class="nv">example = </span><span class="nf">-&gt;</span>
+    <span class="nv">c = </span><span class="k">new</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Entity</span><span class="p">.</span><span class="nx">MyModelOne</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">load</span> <span class="s">&#39;grab-a-uuid-from-the-db-after-calling-save&#39;</span>
+        <span class="p">.</span><span class="nx">then</span> <span class="nf">-&gt;</span>
+            <span class="nv">c.description = </span><span class="s">&quot;My models work everywhere!&quot;</span>
+            <span class="nx">c</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">then</span> <span class="nf">-&gt;</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;Saved&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="examples-code-samples">
+<h2>Examples &amp; Code samples<a class="headerlink" href="#examples-code-samples" title="Permalink to this headline">¶</a></h2>
+<p>Coming soon...</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="Installation"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Melnick.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.7',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
