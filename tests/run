@@ -62,6 +62,7 @@ sleep 1
 # START inspired-server
 #
 startServer
+sleep 3
 
 #
 # CONSOLE

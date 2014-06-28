@@ -1,4 +1,4 @@
-casper.test.begin 'Test 0003 - Peformance & Count', 5, (test) ->
+casper.test.begin 'Test 0003 - Peformance & Count', 4, (test) ->
 	data = {
 		article: null
 		body: 'What a cool description'
@@ -47,11 +47,6 @@ casper.test.begin 'Test 0003 - Peformance & Count', 5, (test) ->
 		@inspired.delete "/articles/#{data.article.uuid}.json"
 		@then (response) ->
 			test.assertEquals response.status, 200, "Delete Base"
-
-	casper.then ->
-		data.date.end = new Date()
-		total = data.date.end - data.date.start
-		test.assert (total < 1500), "Speed < 1500ms (#{total})"
 
 	casper.run ->
 		test.done()

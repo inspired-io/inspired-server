@@ -1,4 +1,4 @@
-casper.test.begin 'Test 0004 - OneToOne', 6, (test) ->
+casper.test.begin 'Test 0004 - OneToOne', 5, (test) ->
 	data = {
 		user: null
 		profile: null
@@ -45,11 +45,6 @@ casper.test.begin 'Test 0004 - OneToOne', 6, (test) ->
 		@inspired.delete "/profiles/#{data.profile.uuid}.json"
 		@then (response) ->
 			test.assertEquals response.status, 200, "Delete Related Entity"
-
-	casper.then ->
-		data.date.end = new Date()
-		total = data.date.end - data.date.start
-		test.assert (total < 400), "Speed < 400ms (#{total})"
 
 	casper.run ->
 		test.done()

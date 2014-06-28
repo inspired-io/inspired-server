@@ -1,4 +1,4 @@
-casper.test.begin 'Test 0002 - OneToMany/ManyToOne', 8, (test) ->
+casper.test.begin 'Test 0002 - OneToMany/ManyToOne', 7, (test) ->
 	data = {
 		article: null
 		comment1: null
@@ -56,11 +56,6 @@ casper.test.begin 'Test 0002 - OneToMany/ManyToOne', 8, (test) ->
 		@inspired.delete "/articles/#{data.article.uuid}.json"
 		@then (response) ->
 			test.assertEquals response.status, 200, "Delete Base"
-
-	casper.then ->
-		data.date.end = new Date()
-		total = data.date.end - data.date.start
-		test.assert (total < 500), "Speed < 500ms (#{total})"
 
 	casper.run ->
 		test.done()

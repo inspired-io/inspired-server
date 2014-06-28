@@ -1,4 +1,4 @@
-casper.test.begin 'Test 0001 - Single Entity', 6, (test) ->
+casper.test.begin 'Test 0001 - Single Entity', 5, (test) ->
 	data = {
 		article: null
 		body: 'What a cool description'
@@ -42,11 +42,6 @@ casper.test.begin 'Test 0001 - Single Entity', 6, (test) ->
 		@then ->
 			matches = @inspired.findInList(data.article.uuid, JSON.parse @getPageContent())
 			test.assertEquals matches.length, 0, "Not In List"
-
-	casper.then ->
-		data.date.end = new Date()
-		total = data.date.end - data.date.start
-		test.assert (total < 400), "Speed < 400ms (#{total})"
 
 	casper.run ->
 		test.done()
