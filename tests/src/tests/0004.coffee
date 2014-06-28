@@ -12,8 +12,6 @@ casper.test.begin 'Test 0004 - OneToOne', 5, (test) ->
 
 	casper.start()
 
-	data.date.start = new Date()
-
 	casper.then ->
 		@inspired.post "/users.json", {
 			username: data.username

@@ -11,8 +11,6 @@ casper.test.begin 'Test 0003 - Peformance & Count', 4, (test) ->
 
 	casper.start()
 
-	data.date.start = new Date()
-
 	casper.then ->
 		@inspired.post "/articles.json", {
 			body: data.body

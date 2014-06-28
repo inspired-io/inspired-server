@@ -10,8 +10,6 @@ casper.test.begin 'Test 0001 - Single Entity', 5, (test) ->
 
 	casper.start()
 
-	data.date.start = new Date()
-
 	casper.then ->
 		@inspired.post "/articles.json", {
 			body: data.body

@@ -12,8 +12,6 @@ casper.test.begin 'Test 0002 - OneToMany/ManyToOne', 7, (test) ->
 
 	casper.start()
 
-	data.date.start = new Date()
-
 	casper.then ->
 		@inspired.post "/articles.json", {
 			body: data.body
